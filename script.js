@@ -31,10 +31,11 @@ async function searchUser() {
   if (!username) return alert("Please enter a username");
 
   try {
-    // reset UI
+    // reset the ui
     profileContainer.classList.add("hidden");
     errorContainer.classList.add("hidden");
-    // https://api.github.com/users.baconlord102
+
+    // https://api.github.com/users/burakorkmez
     const response = await fetch(`https://api.github.com/users/${username}`);
     if (!response.ok) throw new Error("User not found");
 
@@ -49,54 +50,12 @@ async function searchUser() {
   }
 }
 
-function displayUserData(user) {
-  avatar.src = user.avatar_url;
-  nameElement.textContent = user.name || user.login;
-  usernameElement.textContent = `@${user.login}`;
-  bioElement.textContent = user.bio || "No bio available";
-
-  locationElement.textContent = user.locationElement || "Not specified";
-  joinedDataElement.textContent = formatDate(user.created_at);
-
-  profileLink.href = user.html_url;
-  followers.textContent = user.followers;
-  following.textContent = user.following;
-  repos.textContent = user.public_repos;
-
-  if (user.company) companyElement.textContent = user.company;
-  else companyElement.textContent = "Not specified";
-
-  if (user.blog) {
-    blogElement.textContent = user.blog;
-    blogElement.href = user.blog.startsWith("http")
-      ? user.blog
-      : `https://${user.blog}`;
-  } else {
-    blogElement.textContent = "No website";
-    blogElement.href = "#";
-  }
-
-  blogContainer.style.display = "flex";
-
-  if ((user, twitter_username)) {
-    twitterElement.textContent = `@${user.twitter_username}`;
-    twitterElement.href = `https://twitter.com/${user.twitter_username}`;
-  } else {
-    twitterElement.textContent = "NoTwitter";
-    twitterElement.href = "#";
-  }
-
-  twitterContainer.style.display = "flex";
-
-  profileContainer.classList.remove("hidden");
-}
-
 async function fetchRepositories(reposUrl) {
   reposContainer.innerHTML =
     '<div class="loading-repos">Loading repositories...</div>';
 
   try {
-    const response = await fetch(reposUrl);
+    const response = await fetch(reposUrl + "?per_page=6");
     const repos = await response.json();
     displayRepos(repos);
   } catch (error) {
@@ -110,11 +69,12 @@ function displayRepos(repos) {
       '<div class="no-repos">No repositories found</div>';
     return;
   }
+
   reposContainer.innerHTML = "";
 
   repos.forEach((repo) => {
-    const reposCard = document.createElement("div");
-    reposCard.className = "repo-card";
+    const repoCard = document.createElement("div");
+    repoCard.className = "repo-card";
 
     const updatedAt = formatDate(repo.updated_at);
 
@@ -144,8 +104,52 @@ function displayRepos(repos) {
         </div>
       </div>
     `;
-    reposContainer.appendChild(reposCard);
+
+    reposContainer.appendChild(repoCard);
   });
+}
+
+function displayUserData(user) {
+  avatar.src = user.avatar_url;
+  nameElement.textContent = user.name || user.login;
+  usernameElement.textContent = `@${user.login}`;
+  bioElement.textContent = user.bio || "No bio available";
+
+  locationElement.textContent = user.location || "Not specified";
+  joinedDateElement.textContent = formatDate(user.created_at);
+
+  profileLink.href = user.html_url;
+  followers.textContent = user.followers;
+  following.textContent = user.following;
+  repos.textContent = user.public_repos;
+
+  if (user.company) companyElement.textContent = user.company;
+  else companyElement.textContent = "Not specified";
+
+  if (user.blog) {
+    blogElement.textContent = user.blog;
+    blogElement.href = user.blog.startsWith("http")
+      ? user.blog
+      : `https://${user.blog}`;
+  } else {
+    blogElement.textContent = "No website";
+    blogElement.href = "#";
+  }
+
+  blogContainer.style.display = "flex";
+
+  if (user.twitter_username) {
+    twitterElement.textContent = `@${user.twitter_username}`;
+    twitterElement.href = `https://twitter.com/${user.twitter_username}`;
+  } else {
+    twitterElement.textContent = "No Twitter";
+    twitterElement.href = "#";
+  }
+
+  twitterContainer.style.display = "flex";
+
+  // show the profile
+  profileContainer.classList.remove("hidden");
 }
 
 function showError() {
@@ -154,12 +158,12 @@ function showError() {
 }
 
 function formatDate(dateString) {
-  return new Date(dateString).toLocalDateString("en-US", {
+  return new Date(dateString).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
 }
 
-searchInput.value = "";
+searchInput.value = "baconlord102";
 searchUser();

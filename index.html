@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
@@ -29,6 +29,7 @@
         />
         <button id="search-btn">Search</button>
       </div>
+
       <div id="profile-container" class="hidden">
         <div class="profile-header">
           <img src="" alt="Profile avatar" id="avatar" />
@@ -39,25 +40,24 @@
             <div class="location-date">
               <p>
                 <i class="fas fa-map-marker-alt"></i>
-                <span id="location">Not Specified</span>
+                <span id="location">Not specified</span>
               </p>
-
               <p>
                 <i class="far fa-calendar-alt"></i>
                 Joined
                 <span id="joined-date"></span>
               </p>
             </div>
-            <a id="profile-link" target="_blank" class="btn">View Profile</a>
+            <a id="profile-link" target="_blank" class="btn"> View Profile </a>
           </div>
         </div>
 
-        <!-- stats -->
         <div class="stats">
           <div class="stat">
             <i class="fas fa-users"></i>
             <span id="followers"></span> followers
           </div>
+
           <div class="stat">
             <i class="fas fa-user-friends"></i>
             <span id="following"></span> following
@@ -85,7 +85,9 @@
 
         <div class="repos-section">
           <h3>Latest Repositories</h3>
-          <div class="repos-container" id="repos-container">
+          <div id="repos-container" class="repos-container">
+            <!-- Repositories will be inserted here dynamically -->
+
             <div class="loading-repos">Loading repositories...</div>
           </div>
         </div>

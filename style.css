@@ -69,6 +69,7 @@ input[type="text"] {
 input[type="text"]:focus {
   box-shadow: 0 0 0 2px var(--primary-color);
 }
+
 button {
   background-color: var(--primary-color);
   color: #000;
@@ -79,6 +80,10 @@ button {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: var(--primary-dark);
 }
 
 #profile-container {
@@ -149,9 +154,10 @@ button {
 }
 
 .btn:hover {
-  background-color: var(--primary-color);
+  background-color: var(--primary-dark);
 }
 
+/* Stats */
 .stats {
   display: flex;
   gap: 15px;
@@ -186,7 +192,7 @@ button {
 .additional-info {
   margin-top: 25px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, min-max(20px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 15px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   padding-top: 20px;
@@ -203,12 +209,17 @@ button {
 .info-item i {
   color: var(--primary-color);
   width: 20px;
-  word-break: break-all;
+  text-align: center;
 }
 
 .info-item a {
   color: var(--text-gray);
-  text-decoration: var(--primary-light);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.info-item a:hover {
+  color: var(--primary-light);
   text-decoration: underline;
 }
 
@@ -225,11 +236,9 @@ button {
 }
 
 .repos-container {
-  display: flex;
+  display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  border-radius: var(--border-radius);
-  padding: 15px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 15px;
 }
 
 .repo-card {
@@ -261,7 +270,7 @@ button {
 
 .repo-description {
   color: var(--text-gray);
-  font-size: 0.9;
+  font-size: 0.9rem;
   margin-bottom: 12px;
   overflow: hidden;
   min-height: 35px;
@@ -272,6 +281,12 @@ button {
   gap: 15px;
   font-size: 0.85rem;
   color: var(--text-gray);
+}
+
+.repo-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .repo-meta-item i {
@@ -290,11 +305,11 @@ button {
   text-align: center;
   padding: 30px;
   grid-column: 1 / -1;
-  border: 1px dashed rgba(255, 255, 255, 0.01);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
   border-radius: var(--border-radius);
 }
 
-/* Responsive */
+/* Responsive design for mobile devices */
 @media (max-width: 600px) {
   .profile-header {
     flex-direction: column;
