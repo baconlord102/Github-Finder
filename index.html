@@ -16,8 +16,8 @@
   <body>
     <div class="container">
       <header>
-        <h1><i class="fab fa-github"></i> Github User Finder</h1>
-        <p>Search for any Github user to see their profile and repositories</p>
+        <h1><i class="fab fa-github"></i> GitHub User Finder</h1>
+        <p>Search for any GitHub user to see their profile and repositories</p>
       </header>
 
       <div class="search-container">
@@ -43,14 +43,12 @@
               </p>
 
               <p>
-                <i class="fas fa-calender-alt"></i>
+                <i class="far fa-calendar-alt"></i>
                 Joined
-                <span id="location">joined-date</span>
+                <span id="joined-date"></span>
               </p>
             </div>
-            <a href="" id="profile-link" target="_blank" class="btn"
-              >View Profile</a
-            >
+            <a id="profile-link" target="_blank" class="btn">View Profile</a>
           </div>
         </div>
 
@@ -77,10 +75,24 @@
           </div>
           <div class="info-item" id="blog-container">
             <i class="fas fa-link"></i>
-            <a id="blog" target>Not Specified</a>
+            <a id="blog" target="_blank">No website</a>
           </div>
-          <div class="info-item"></div>
+          <div class="info-item" id="twitter-container">
+            <i class="fab fa-twitter"></i>
+            <a id="twitter" target="_blank">No Twitter</a>
+          </div>
         </div>
+
+        <div class="repos-section">
+          <h3>Latest Repositories</h3>
+          <div class="repos-container" id="repos-container">
+            <div class="loading-repos">Loading repositories...</div>
+          </div>
+        </div>
+      </div>
+
+      <div id="error-container" class="hidden">
+        <p>No user found. Please try another username.</p>
       </div>
     </div>
 
